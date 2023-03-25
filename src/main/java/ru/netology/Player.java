@@ -44,13 +44,12 @@ public class Player {
      суммирует время, проигранное во все игры этого жанра этим игроком */
     public int sumGenre(String genre) {
         int sum = 0;
-        for (Game game : playedTime.keySet()) {
+        for (Game game : playedTime.keySet())
             if (game.getGenre().equals(genre)) {
                 sum += playedTime.get(game);
             } else {
                 sum = 0;
             }
-        }
         return sum;
     }
 
