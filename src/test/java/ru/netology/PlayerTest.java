@@ -2,6 +2,7 @@ package ru.netology;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class PlayerTest {
@@ -22,25 +23,21 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldSumGenreIfTwoGamesWithoutInstall() {
+    public void shouldThrowException() {
         Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
-        Game game2 = store.publishGame("Голодные муравьи", "Аркады");
-
 
         Player player = new Player("Petya");
-        player.play(game1, 3);
 
-        player.play(game2, 8);
-
-        int expected = 11;
-        int actual = player.sumGenre(game1.getGenre());
-        assertEquals(expected, actual);
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            player.play(game1, 9);
+        });
     }
 
+    // добавление игры игроку
 
-  /*  @Test
-    public void shouldGetUpdateGameHoursIfInstall() {
-     Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+    /*@Test
+    public void shouldUpdateTimeGame() {
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
         Player player = new Player("Petya");
         player.installGame(game);
@@ -49,9 +46,8 @@ public class PlayerTest {
         int expected = 3;
         int actual = player.playedTime.get(game);
         assertEquals(expected, actual);
-    }
+    }*/
 
- */
 
     @Test
     public void shouldFindMostPlayerGameByGenre() {
